@@ -288,6 +288,10 @@ class Parser(object):
 				f = StringIO(r.content)
 				self.parser_func(f, path)
 				return
+			elif path == '-':
+				# Use stdin as input
+				self.parser_func(sys.stdin, 'stdin')
+				return
 			elif os.path.isfile(path):
 				with open(path, 'rb') as f:
 					self.parser_func(f, path)
